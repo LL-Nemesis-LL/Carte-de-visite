@@ -1,0 +1,89 @@
+:root {
+    --bleu: #1D3F58;
+    --orange: #FD6F0B;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    display: flex;
+    min-height: 100%;
+    margin: 0;
+    background-color: #e3e3e3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main {
+    padding: 10px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.logo {
+    background-image: url("/public/assets/Compte.jpg");
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 80px;
+    height: 100px;
+}
+
+.divLogoAcount {
+    display: flex;
+    align-items: center;
+}
+
+.divInput {
+    display: flex;
+    flex-direction: column;
+    gap: 5px
+}
+
+.titre {
+    color: white;
+}
+
+nav {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: var(--bleu);
+    padding: 0;
+}
+
+#divContentNav {
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 20px;
+}
+
+.divBtnConnect {
+    display: flex;
+    gap: 10px
+}
+
+button {
+    font-size: 15px;
+    padding: 5px 10px;
+    border-radius: 18px;
+    border-color: var(--orange);
+    border-style: solid;
+    background-color: white;
+    cursor: pointer;
+    color: var(--orange);
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--orange);
+    color: white;
+}
