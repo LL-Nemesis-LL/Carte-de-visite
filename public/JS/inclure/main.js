@@ -1,11 +1,11 @@
 async function getComponents(nom, contentType) {
-    let hote = location.hostname
+    let hote = location.host
     let myHeader = new Headers();
     myHeader.append("Content-Type", contentType);
     myHeader.append("Access-Control-Allow-Origin", "*");
     myHeader.append("Access-Control-Allow-Headers", "*")
-    let myRequest = new Request("/public/components/" + nom, {
-        method: "POST",
+    let myRequest = new Request("http://" + hote + "/public/components/" + nom, {
+        method: "GET",
         headers: myHeader,
         mode: "no-cors",
     });
@@ -21,6 +21,13 @@ async function getNav() {
         });
 
 }
+async function getNavBtnConnect() {
+    let response = await getComponents("navBtnConnect.html", "html/text");
+    response.text()
+        .then(html => {
+            document.getElementById("divContentNav").innerHTML += html;
+        });
+}
 function getLogo() {
     var link = document.querySelector("link[rel~='icon']");
     if (!link) {
@@ -30,6 +37,12 @@ function getLogo() {
     }
     link.href = "/public/assets.CTM.ico";
 }
+function getMainCSS() {
+    link = document.createElement('link');
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+    link.href = "/public/CSS/main.css";
+}
 
 function getRedirect() {
     var script = document.createElement("script");
@@ -37,8 +50,10 @@ function getRedirect() {
     document.head.appendChild(script);
 }
 
+getMainCSS();
 window.addEventListener("load", () => {
     getLogo();
     getRedirect();
     getNav();
 });
+

@@ -5,16 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carte de visite</title>
-    <script src="public/JS/inclure/main.js"></script>
-    <link rel="stylesheet" href="public/css/main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <script src="public/JS/inclure/main.js"></script>
+    <link rel="stylesheet" href="public/css/index.css">
+    <script>
+        window.addEventListener("load", () => {
+            getNavBtnConnect();
+        })
+    </script>
 </head>
 
-<body>
+<body class="full flexColumn">
     <nav></nav>
-    <main></main>
+    <main class="full flexColumn">
+        <h1>Bienvenue chez Titre</h1>
+        <div class="full flexRow divFonctionnalites">
+            <div class="flexColumn divFonctionnalite">
+                <h3>Créez vos cartes de visite</h3>
+            </div>
+            <div class="flexColumn divFonctionnalite">
+                <h3>Partagez-les</h3>
+            </div>
+        </div>
+    </main>
 
 </body>
 

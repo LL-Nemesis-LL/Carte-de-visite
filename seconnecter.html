@@ -5,19 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Se connecter</title>
-    <script src="public/JS/inclure/main.js"></script>
     <link rel="stylesheet" href="public/css/connexion.css">
-    <link rel="stylesheet" href="public/css/main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <script src="public/JS/inclure/main.js"></script>
+    <script src="public/JS/connexion.js"></script>
 </head>
 
-<body>
+<body class="full flexColumn">
     <nav></nav>
-    <main>
-        <form action="">
-
+    <main class="full flexColumn">
+        <form action="" class="flexColumn">
+            <div class="divLogoAccount">
+                <div class="logo account"></div>
+                <span>Connexion</span>
+            </div>
+            <div class="full divInputs">
+                <div class="divInput">
+                    <span>Email</span>
+                    <input type="email" name="" id="email">
+                </div>
+                <div class="divInput">
+                    <span>Mot de passe</span>
+                    <input type="password" name="" id="password">
+                </div>
+            </div>
+            <button type="button" onclick="sendConnexion()">Se connecter</button>
         </form>
     </main>
 </body>
