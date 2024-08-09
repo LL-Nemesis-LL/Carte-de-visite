@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Incription</title>
     <link rel="stylesheet" href="public/css/connexion.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="public/JS/inclure/main.js"></script>
-    <script src="public/JS/connexion.js"></script>
+    <script src="public/JS/inclure/mainConnexion.js"></script>
 </head>
 
 <body class="full flexColumn">
@@ -17,37 +15,37 @@
     </nav>
     <main class="full flexColumn">
         <form action="http" class="flexColumn">
-            <div class="divLogoAccount">
-                <div class="logo addAccount"></div>
+            <div class="flexColumn">
+                <img src="public/assets/AddAccount.png" class="logoConnexion" alt="">
                 <span>Inscription</span>
             </div>
             <div class="divInputs">
                 <div class="divInputsName">
                     <div class="divInput">
                         <span>Nom</span>
-                        <input id="nom" type="text">
+                        <input id="nom" type="text" value="dumar">
                     </div>
                     <div class="divInput">
                         <span> Prénom</span>
-                        <input id="prenom" type="text">
+                        <input id="prenom" type="text" value="dumar">
                     </div>
 
                 </div>
                 <div class="divInput">
                     <span>E-mail</span>
-                    <input id="email" type="email">
+                    <input id="email" type="email" value="dumar">
                 </div>
                 <div class="divInput">
                     <span>Mot de passe</span>
-                    <input id="password" type="password">
+                    <input id="password" type="password" value="test">
                 </div>
                 <div class="divInput">
                     <span>Confirmation mot de passe</span>
 
-                    <input id="cPasssword" type="password">
+                    <input id="cPasssword" type="password" value="test">
                 </div>
             </div>
-            <button type="button" onclick="sendInscription()">S'inscrire</button>
+            <button type="button" class="simple" onclick="sendInscription()">S'inscrire</button>
             <span>J'ai déjà un compte? <a href="seconnecter.html">Se connecter</a></span>
 
         </form>

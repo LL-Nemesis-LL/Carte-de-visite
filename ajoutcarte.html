@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter une carte</title>
+    <script src="public/JS/inclure/main.js"></script>
+    <script src="public/JS/inclure/ajoutCarte.js"></script>
+</head>
+
+<body class="full flexColumn">
+    <nav></nav>
+    <main class="full flexColumn">
+        <form class="flexColumn formAjoutCarte">
+            <h3>Ma carte</h3>
+            <div class="divInputs">
+                <div class="divInput">
+                    <label for="logoEntreprise">Logo de l'entreprise</label>
+                    <input type="file" id="logoEntreprise" class="input">
+                    <div class="ligne"></div>
+                </div>
+                <div class="divInput">
+                    <label for="photoProfil">Photo de profil</label>
+                    <input type="file" id="photoProfil" class="input">
+                    <div class="ligne"></div>
+                </div>
+                <div class="divInput">
+                    <label for="nomPoste">Nom du poste</label>
+                    <input type="text" id="nomPoste" class="input">
+                    <div class="ligne"></div>
+                </div>
+                <div class="divInput">
+                    <label for="telephone">Numéro de téléphone</label>
+                    <input type="text" id="telephone" class="input">
+                    <div class="ligne"></div>
+                </div>
+                <div class="divInput">
+                    <label for="email">E-mail</label>
+                    <input type="text" id="email" class="input">
+                    <div class="ligne"></div>
+                </div>
+                <div class="divInput">
+                    <label>Coordonnées</label>
+                    <input type="text" placeholder="N° Rue" id="numeroRue" class="input">
+                    <div class="ligne"></div>
+                    <input type="text" placeholder="Nom du quartier" id="nomQuartier" class="input">
+                    <div class="ligne"></div>
+                    <input type="text" placeholder="Ville" id="ville">
+                    <div class="ligne"></div>
+                    <input type="text" placeholder="Code postal" id="codePostal" class="input">
+                    <div class="ligne"></div>
+                </div>
+                <div class="divInput" id="divReseaux">
+                    <span>Réseaux sociaux</span>
+                    <div class="divReseau">
+                        <div class="flexRow">
+                            <input type="link" placeholder="Ajouter un réseau" class="reseauSocial">
+                            <img src="public/assets/plus.svg" class="imgSvg plus" alt="">
+                        </div>
+                        <div class="ligne"></div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="simple" onclick="sendCarte()">Enregistrer</button>
+
+        </form>
+    </main>
+
+</body>
+
+</html>

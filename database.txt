@@ -1,7 +1,25 @@
+CREATE DATABASE my_card;
+USE my_card;
+CREATE USER 'my_card'@'localhost' IDENTIFIED BY 'm_7H_Be&uNz54A';
+GRANT SELECT,INSERT,UPDATE,DELETE privileges on my_card.* to 'my_card'@'localhost';
+FLUSH PRIVILEGES;
 CREATE TABLE utilisateurs(
-    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    id INT PRIMARY KEY UNIQUE NOT NULL AUTO_INCREMENT,
     nom VARCHAR(100) NOT NULL,
     prenom VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
-    password CHAR(64) NOT NULL
+    password CHAR(64) NOT NULL,
+    token CHAR(200) NOT NULL UNIQUE,
+    time CHAR(24) NOT NULL
+);
+CREATE TABLE carteDeVisite(
+    id int PRIMARY KEY UNIQUE NOT NULL AUTO_INCREMENT,
+    idUtilisateur int NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    nomPoste VARCHAR(100) NOT NULL,
+    numeroRue VARCHAR(3) NOT NULL,
+    nomQuartier VARCHAR(100),
+    codePostal CHAR(5) NOT NULL,
+    telephone CHAR(10) NOT NULL,
+    FOREIGN KEY (idUtilisateur) REFERENCES utilisateurs(id)
 );

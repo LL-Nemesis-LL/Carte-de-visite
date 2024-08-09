@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="30.000004mm"
+   height="10.00054mm"
+   viewBox="0 0 30.000004 10.00054"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   sodipodi:docname="moins.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="2.7652077"
+     inkscape:cx="148.81342"
+     inkscape:cy="-63.648023"
+     inkscape:window-width="1920"
+     inkscape:window-height="974"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-74.999997,-120)">
+    <path
+       style="fill:#000000;stroke-width:0.269265; fill: #d4d4d4"
+       d="m 95,120 h 7.66 c 1.35235,0.0252 2.33679,0.95928 2.34,2.33 v 5.33 c -0.0271,1.40793 -0.94997,2.36659 -2.34,2.34 H 95 85 77.33 c -1.295638,0.0158 -2.318392,-1.00973 -2.33,-2.34 v -5.33 C 74.998,121.13099 76.027415,120 77.33,120 H 85 Z"
+       id="path212"
+       sodipodi:nodetypes="ccccccccccccc" />
+  </g>
+</svg>
