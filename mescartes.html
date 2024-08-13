@@ -6,20 +6,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mes Cartes</title>
     <script src="public/JS/inclure/main.js"></script>
-    <script>
-        window.addEventListener("load", () => {
-            getNavConnect();
-            getGetCartes();
-        });
-    </script>
+    <script src="public/JS/inclure/mainShowCarte.js"></script>
 </head>
 
 <body class="full flexColumn">
     <nav></nav>
     <main class="full flexColumn">
-        <div class=" flex Column divCarte">
-            <img src="public/assets/Aucun.jpg" alt="">
-            <h3>Nom de la carte</h3>
+        <template id="templateCard">
+            <div class="flexColumn divCarte">
+                <div class="flexRow full divTitle">
+                    <h3 class="titleCard"></h3>
+                    <button type="button" class="action partager">Partager</button>
+                </div>
+
+                <div class="flexColumn divFirstInfos">
+                    <img class="profilePicture" src="public/assets/Compte.jpg" alt="">
+                    <div class="flexRow divName">
+                        <span class="firsName"></span>
+                        <span class="lastName"></span>
+                    </div>
+                    <div class="divPostName">
+                        <span class="postName">Expert en cybersécurité</span>
+                    </div>
+                </div>
+                <div class="ligne ligneOrange"></div>
+                <div class="flexRow companyInfo full">
+                    <div class="flexColumn divInfo">
+                        <label for="">Société</label>
+                        <span class="companyName">Collectivité de la martinique</span>
+                    </div>
+                    <div class="flexColumn divInfo ">
+                        <label for="">Service</label>
+                        <span class="serviceName">Informatique</span>
+                    </div>
+                </div>
+                <div class="flexColumn divInfo">
+                    <label for="">Numéro de téléphone</label>
+                    <span class="phoneNumber">+33 18 15 93 04</span>
+                </div>
+                <div class="flexColumn divInfo">
+                    <label for="">E-mail</label>
+                    <span class="email">marc-antoine.dumar@Collectivitedemartinique.mq</span>
+                </div>
+                <div class="flexColumn divInfo">
+                    <label for="">Coordonnées</label>
+                    <div class="flexRow divAddress">
+                        <span class="streetNumber">12</span>
+                        <span class="districtName">Avenue Jean Jaurès</span>
+                        <span class="postalCode">33150</span>
+                        <span class="city">CENON</span>
+                    </div>
+
+                </div>
+                <div class="flexRow divButton full">
+                    <button type="button" class="action blue"><span>Modifier</span><img src="" alt=""></button>
+                    <button type="button" class="action red"><span>Supprimer</span><img src="" alt=""></button>
+                </div>
+            </div>
+        </template>
+        <div class="flexColumn divCards">
 
         </div>
     </main>

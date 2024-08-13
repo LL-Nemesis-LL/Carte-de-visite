@@ -1,0 +1,60 @@
+.divCards {
+    gap: 10px;
+}
+
+.divCarte {
+    background-color: var(--gris-fonce);
+    border-radius: 10px;
+    padding: 15px;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.divTitle {
+    justify-content: space-between;
+}
+
+.divInfo {
+    align-items: flex-start;
+}
+
+.divInfo label {
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--bleu)
+}
+
+.divFirstInfos {
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.profilePicture {
+    border-radius: 50%;
+    width: 70px;
+}
+
+.divName {
+    gap: 5px;
+}
+
+.divName span {
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.divPostName {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.companyInfo {
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.divAddress {
+    gap: 5px;
+}

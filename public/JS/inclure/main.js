@@ -8,6 +8,25 @@ function getLogo() {
     link.href = "public/assets/CTM.ico";
 }
 
+function getCookie() {
+
+    let cookies = {};
+    let cookie = document.cookie.split("; ");
+    for (parent of cookie) {
+        child = parent.split("=");
+        cookies[child[0]] = child[1];
+    }
+    return cookies;
+
+}
+let cookie = getCookie();
+let pathName = window.location.pathname;
+if (pathName === "/" || pathName === "/index.html") {
+    if (cookie["connected"] != undefined) {
+        window.location.href = "monespace.html";
+    }
+}
+
 function getComponents(nom) {
     let hote = location.host;
 
@@ -48,13 +67,47 @@ function getPublic(css, script) {
             }
 
         }
+        resolve("yes");
     }
     return new Promise(promesse);
 }
 
 let css = ["fontGoogle.css", "main.css"];
-let script = ["redirect.js"];
+let script = ["redirect.js", "animNav.js", "logOut.js"];
 
 let getNav = getComponents("nav.html")
     .then(response => response.text());
 getPublic(css, script);
+if (cookie["connected"] == undefined) {
+    let getNavConnected = getComponents("navBtnConnect.html")
+        .then(response => {
+            return response.text()
+        })
+        .then((html) => {
+            getNav.then(htmlNav => {
+                window.addEventListener('load', () => {
+                    document.getElementsByTagName("nav")[0].innerHTML = htmlNav;
+                    document.getElementById("divContentNav").innerHTML += html;
+                });
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+} else {
+    let getNavConnect = getComponents("navConnect.html")
+        .then(response => response.text())
+        .then((html) => {
+            getNav.then(htmlNav => {
+                window.addEventListener('load', () => {
+                    document.getElementsByTagName("nav")[0].innerHTML = htmlNav;
+                    document.getElementById("divContentNav").innerHTML += html;
+                    document.getElementById("menuCompte").addEventListener("mouseleave", menuCompteClose);
+                    window.addEventListener("scroll", menuCompteClose);
+                });
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+}

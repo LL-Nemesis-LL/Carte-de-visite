@@ -6,35 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon espace</title>
     <script src="public/JS/inclure/main.js"></script>
-    <script>
-        window.addEventListener("load", () => {
-            getNavConnect();
-        });
-    </script>
+    <link rel="stylesheet" href="public/css/ajoutCarte.css">
 </head>
 
-<body class="full flexColumn">
+<body class="flexColumn full">
     <nav></nav>
-    <main class="full flexColumn">
-        <div class="full flexRow divFonctionnalites">
-            <div class=" flexColumn divFonctionnalite">
-                <h3>Mes Cartes de visite</h3>
-                <span>
-                    Créer, modifier, partager vos carte de visite
-                </span>
-                <button type="button" class="simple end" onclick="redirectMesCartes()"> Accéder à mes cartes</button>
+    <main class="flexColumn">
+        <div class="flexRow divFonctionnalites">
+            <div class="flexColumn divFonctionnalite">
+                <h3>Créer une carte</h3>
+                <button type="button" class="redirect end" onclick="redirectAjoutCarte()">Créer une carte</button>
             </div>
-            <div class=" flexColumn divFonctionnalite">
-                <h3>Recherchés des Cartes de visite</h3>
-                <span>Consulter les cartes de visites publique
-                    de d'autres membres et ajoutez-les dans vos favoris</span>
-                <button type="button" class="simple end"> Trouver à des cartes</button>
+            <div class="flexColumn divFonctionnalite">
+                <h3>Accéder à mes cartes</h3>
+                <button type="button" class="redirect end" onclick="redirectMesCartes()">Accéder à mes cartes</button>
             </div>
-
+            <div class="flexColumn divFonctionnalite">
+                <h3>Rechercher une carte</h3>
+                <button type="button" class="redirect end" onclick="redirectRechercheCarte()">Rechercher une
+                    carte</button>
+            </div>
         </div>
-
     </main>
-
 </body>
 
 </html>

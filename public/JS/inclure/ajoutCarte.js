@@ -1,3 +1,3 @@
-css = ["connexion.css", "ajoutCarte.css"];
-script = ["animAjoutCarte.js", "inclure/mainConnecting.js", "sendCarte.js", "mainRequest.js"];
+css = ["ajoutCarte.css"];
+script = ["animAjoutCarte.js", "sendCarte.js", "request.js"];
 getPublic(css, script);

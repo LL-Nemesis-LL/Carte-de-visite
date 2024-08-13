@@ -6,20 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carte de visite</title>
     <script src="public/JS/inclure/main.js"></script>
-    <script src="public/JS/inclure/mainConnexion.js"></script>
-    <link rel="stylesheet" href="public/css/index.css">
 </head>
 
 <body class="full flexColumn">
     <nav></nav>
     <main class="full flexColumn">
-        <h1>Bienvenue chez Titre</h1>
+        <h1 style="text-align: center">Bienvenue chez VisitCard</h1>
         <div class="full flexRow divFonctionnalites">
             <div class="flexColumn divFonctionnalite">
-                <h3>Créez vos cartes de visite</h3>
+                <span>Accès <h3>avec</h3> compte</span>
+                <ul>
+                    <li>Consulter les cartes de visites publique
+                        des autres membres</li>
+                    <li>Créer vos propres cartes de visites</li>
+                    <li>Partager-les par e-mail</li>
+                    <li>Ajouter vos cartes de visites préférées dans vos favorits</li>
+                </ul>
+                <button type="button" onclick="redirectInscription()" class="simple end">S'inscrire</button>
             </div>
-            <div class="flexColumn divFonctionnalite">
-                <h3>Partagez-les</h3>
+            <div class=" flexColumn divFonctionnalite">
+                <span>Accès <h3>sans</h3> compte</span>
+                <ul>
+                    <li>Consulter les cartes de visites publique
+                        des autres membres</li>
+                </ul>
+                <button type="button" class="redirect end" onclick="redirectRechercheCarte()"> Rechercher une
+                    carte</button>
             </div>
         </div>
     </main>

@@ -1,19 +1,27 @@
 function sendInscription() {
     let data = getValueInput("input");
-    sendRequest("inscription", "application/json", data);
+    sendRequest("signup", "application/json", data)
+        .then(response => response.json())
+        .then(data => {
+            if (data["message"] == true) {
+                window.location.href = "monespace.html";
+            } else {
+                document.getElementById("message").innerText = data["message"]
+            }
+        })
 }
 
 function sendConnexion() {
     let data = getValueInput("input");
-    sendRequest("seconnecter", "application/json", data);
+    sendRequest("signin", "application/json", data)
+        .then(response => response.json())
+        .then(data => {
+            if (data["message"] == true) {
+                window.location.href = "monespace.html";
+            } else {
+                document.getElementById("message").innerText = data["message"]
+            }
+        })
 }
 
-async function getNavBtnConnect() {
-    let response = await getComponents("navBtnConnect.html", "html/text");
-    response.text()
-        .then(html => {
-            document.getElementById("divContentNav").innerHTML += html;
-        });
-}
-getPublic([], ["mainRequest.js"]);
-getNavBtnConnect();
+getPublic([], ["request.js"]);
