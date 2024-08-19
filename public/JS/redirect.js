@@ -15,3 +15,15 @@ function redirectAjoutCarte() {
 function redirectRechercheCarte() {
     window.location.href = "recherchecarte.html";
 }
+
+function redirectMonCompte() {
+    window.location.href = "moncompte.html";
+}
+function redirectMySpace() {
+    if (cookie["connected"] != undefined) {
+        window.location.href = "monespace.html";
+    } else {
+        window.location.href = "/";
+    }
+
+}

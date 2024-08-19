@@ -1,7 +1,6 @@
 function menuCompteClose() {
-    let menu = document.getElementById("menuCompte").style;
-    menu.right = "-190px";
-
+    let menu = document.getElementById("divMenu").style;
+    menu.left = "-220px";
     let divFond = document.getElementById("divFond").style;
     divFond.opacity = "0";
     setTimeout(() => {
@@ -10,8 +9,8 @@ function menuCompteClose() {
 }
 
 function menuCompteOpen() {
-    let menu = document.getElementById("menuCompte").style;
-    menu.right = "10px";
+    let menu = document.getElementById("divMenu").style;
+    menu.left = "10px";
 
     let divFond = document.getElementById("divFond").style;
 

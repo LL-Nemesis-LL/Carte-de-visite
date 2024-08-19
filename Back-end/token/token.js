@@ -13,7 +13,6 @@ function checkConnecting(cookie) {
                         } else {
                             reject("l'utilisateur est déconnecté");
                         }
-
                     } else {
                         reject("token plus valide");
                     }

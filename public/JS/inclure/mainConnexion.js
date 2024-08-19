@@ -1,9 +1,8 @@
 function sendInscription() {
-    let data = getValueInput("input");
+    let data = getValueForm("formSignup")
     sendRequest("signup", "application/json", data)
-        .then(response => response.json())
         .then(data => {
-            if (data["message"] == true) {
+            if (data["result"] == true) {
                 window.location.href = "monespace.html";
             } else {
                 document.getElementById("message").innerText = data["message"]
@@ -12,11 +11,10 @@ function sendInscription() {
 }
 
 function sendConnexion() {
-    let data = getValueInput("input");
-    sendRequest("signin", "application/json", data)
-        .then(response => response.json())
+    let data = getValueForm("formSignin");
+    sendRequest("signin", JSON.stringify(data))
         .then(data => {
-            if (data["message"] == true) {
+            if (data["result"] == true) {
                 window.location.href = "monespace.html";
             } else {
                 document.getElementById("message").innerText = data["message"]
@@ -24,4 +22,20 @@ function sendConnexion() {
         })
 }
 
+window.addEventListener("load", () => {
+    document.getElementById("formSignup").addEventListener("submit", (event) => {
+        event.preventDefault();
+        let data = getValueForm("formSignup");
+    })
+
+});
+
 getPublic([], ["request.js"]);
+
+window.addEventListener("load", () => {
+
+    document.getElementById("formSignin").addEventListener('submit', (event) => {
+        event.preventDefault();
+        sendConnexion();
+    });
+});

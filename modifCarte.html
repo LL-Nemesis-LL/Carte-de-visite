@@ -4,74 +4,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajouter une carte</title>
+    <title>Document</title>
     <script src="public/JS/inclure/main.js"></script>
-    <script src="public/JS/inclure/ajoutCarte.js"></script>
+    <script src="public/JS/inclure/mainEditCard.js"></script>
+
 </head>
 
 <body class="full flexColumn">
     <nav></nav>
-    <main class="full flexColumn">
-        <form class="flexColumn formAjoutCarte" enctype="multipart/form-data" id="formAjoutCarte">
+    <template id="editCard">
+        <form class="flexColumn formAjoutCarte">
             <h3>Ma carte</h3>
             <div class=" flexColumn divInputs">
                 <div class="flexColumn divInput full">
                     <label for="titleCard">Titre</label>
-                    <input type="text" name="titleCard" class="inputCarte" value="CTM">
+                    <input type="text" id="titleCard" class="inputCarte">
                     <div class="ligne"></div>
                 </div>
                 <div class="flexColumn divInput full">
                     <label for="companyLogo">Logo de l'entreprise</label>
-                    <input type="file" id="companyLogo" name="companyLogo" class="input">
+                    <input type="file" id="companyLogo" class="input">
                     <div class="ligne"></div>
                 </div>
                 <div class="flexColumn divInput full">
                     <label for="profilePicture">Photo de profil</label>
-                    <input type="file" id="profilePicture" name="profilePicture" class="input">
+                    <input type="file" id="profilePicture" class="input">
                     <div class="ligne"></div>
                 </div>
                 <div class="flexColumn divInput full">
                     <label for="postName">Nom du poste</label>
-                    <input type="text" name="postName" class="inputCarte" value="expert cybersécurité">
+                    <input type="text" id="postName" class="inputCarte">
                     <div class="ligne"></div>
                 </div>
                 <div class="flexColumn divInput full">
                     <label for="serviceName">Nom du service</label>
-                    <input type="text" name="serviceName" class="inputCarte" value="informatique">
+                    <input type="text" id="serviceName" class="inputCarte">
                     <div class="ligne"></div>
                 </div>
                 <div class="flexColumn divInput full">
                     <label for="companyName">Nom de la société</label>
-                    <input type="text" name="companyName" class="inputCarte" value="Collectivité de la martinique">
+                    <input type="text" id="companyName" class="inputCarte">
                     <div class="ligne"></div>
                 </div>
                 <div class="flexColumn divInput full">
                     <label for="phoneNumber">Numéro de téléphone</label>
-                    <input type="text" name="phoneNumber" class="inputCarte" value="0618159304">
+                    <input type="text" id="phoneNumber" class="inputCarte">
                     <div class="ligne"></div>
                 </div>
                 <div class="flexColumn divInput full">
                     <label for="email">E-mail</label>
-                    <input type="text" name="email" class="inputCarte" value="dumar.marcantoine@gmail.com">
+                    <input type="text" id="email" class="inputCarte">
                     <div class="ligne"></div>
                 </div>
                 <div class="flexColumn divInputs full">
                     <label>Coordonnées</label>
                     <div class="flexColumn divInput full">
-                        <input type="text" placeholder="N° Rue" name="streetNumber" class="inputCarte" value="12">
+                        <input type="text" placeholder="N° Rue" id="streetNumber" class="inputCarte">
                         <div class="ligne"></div>
                     </div>
                     <div class="flexColumn divInput full">
-                        <input type="text" placeholder="Nom du quartier" name="districtName" class="inputCarte"
-                            value="Avenue Jean Jaurès">
+                        <input type="text" placeholder="Nom du quartier" id="districtName" class="inputCarte">
                         <div class="ligne"></div>
                     </div>
                     <div class="flexColumn divInput full">
-                        <input type="text" placeholder="Ville" name="city" class="inputCarte" value="CENON">
+                        <input type="text" placeholder="Ville" id="city" class="inputCarte">
                         <div class="ligne"></div>
                     </div>
                     <div class="flexColumn divInput full">
-                        <input type="text" placeholder="Code postal" name="postalCode" class="inputCarte" value="33150">
+                        <input type="text" placeholder="Code postal" id="postalCode" class="inputCarte">
                         <div class="ligne"></div>
                     </div>
                 </div>
@@ -87,11 +87,12 @@
                 </div>
             </div>
 
-            <button type="submit" class="action">Enregistrer</button>
+            <button type="button" class="action" onclick="sendEditCard()">Enregistrer</button>
 
         </form>
+    </template>
+    <main class="full flexColumn">
     </main>
-
 </body>
 
 </html>

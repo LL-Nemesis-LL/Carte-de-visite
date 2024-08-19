@@ -13,12 +13,26 @@ function getCookie() {
     let cookies = {};
     let cookie = document.cookie.split("; ");
     for (parent of cookie) {
-        child = parent.split("=");
+        let child = parent.split("=");
         cookies[child[0]] = child[1];
     }
     return cookies;
 
 }
+
+function getParamUrl() {
+    let params = {};
+    let path = window.location.href;
+    let paramsUrl = path.split("?");
+    console.log(paramsUrl)
+    let param = paramsUrl[1].split("&");
+    for (parent of param) {
+        let child = parent.split("=");
+        params[child[0]] = child[1];
+    }
+    return params;
+}
+
 let cookie = getCookie();
 let pathName = window.location.pathname;
 if (pathName === "/" || pathName === "/index.html") {
@@ -40,7 +54,8 @@ function getComponents(nom) {
         headers: myHeader,
         mode: "no-cors",
     });
-    return fetch(myRequest);
+    return fetch(myRequest)
+        .then(response => response.text());
 }
 
 function getPublic(css, script) {
@@ -73,41 +88,26 @@ function getPublic(css, script) {
 }
 
 let css = ["fontGoogle.css", "main.css"];
-let script = ["redirect.js", "animNav.js", "logOut.js"];
+let script = ["redirect.js", "animNav.js", "request.js", "logOut.js"];
 
-let getNav = getComponents("nav.html")
-    .then(response => response.text());
+let getNav = getComponents("nav.html");
 getPublic(css, script);
 if (cookie["connected"] == undefined) {
-    let getNavConnected = getComponents("navBtnConnect.html")
-        .then(response => {
-            return response.text()
-        })
-        .then((html) => {
-            getNav.then(htmlNav => {
-                window.addEventListener('load', () => {
-                    document.getElementsByTagName("nav")[0].innerHTML = htmlNav;
-                    document.getElementById("divContentNav").innerHTML += html;
-                });
-            });
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+    var getNavBtn = getComponents("navBtnConnect.html");
+    var getMenuBtn = getComponents("menuBtnConnect.html");
 } else {
-    let getNavConnect = getComponents("navConnect.html")
-        .then(response => response.text())
-        .then((html) => {
-            getNav.then(htmlNav => {
-                window.addEventListener('load', () => {
-                    document.getElementsByTagName("nav")[0].innerHTML = htmlNav;
-                    document.getElementById("divContentNav").innerHTML += html;
-                    document.getElementById("menuCompte").addEventListener("mouseleave", menuCompteClose);
-                    window.addEventListener("scroll", menuCompteClose);
-                });
-            });
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+    var getNavBtn = getComponents("navConnect.html");
+    var getMenuBtn = getComponents("menuConnect.html");
 }
+const constructNav = Promise.all([getNav, getNavBtn, getMenuBtn]);
+constructNav
+    .then((htmls) => {
+        window.addEventListener('load', () => {
+            document.getElementsByTagName("nav")[0].innerHTML = htmls[0];
+            document.getElementById("divCoteNavD").innerHTML += htmls[1];
+            document.getElementById("divMenu").innerHTML += htmls[2];
+        });
+    })
+    .catch((err) => {
+        console.log(err);
+    });

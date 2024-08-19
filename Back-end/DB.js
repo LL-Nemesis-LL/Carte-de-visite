@@ -1,4 +1,6 @@
 const mysql = require('mysql2/promise');
+const codeError = [1062, 1406];
+const nameError = ["Email déjà utilisé", "valeur input trop longue"];
 const pool = mysql.createPool({
     host: process.env.host_DB,
     user: process.env.user_DB,
@@ -29,13 +31,11 @@ function requeteSql(requetePrepared, valueSql) {
             return resultRequest;
 
         })
-        .catch(err => { throw new Error(err) });
     return requete;
 }
 
 function selSql(requetePrepared, valueSql, allRows = false) {
-    const requete = requeteSql(requetePrepared, valueSql)
-    const resultRequete = requete
+    return requeteSql(requetePrepared, valueSql)
         .then(rows => {
             if (allRows) {
                 return rows[0];
@@ -49,21 +49,32 @@ function selSql(requetePrepared, valueSql, allRows = false) {
                     throw new Error("Doit retourné une ligne alors qu'elle en retourne plusieurs :\n" + rows[0]);
                 }
             }
-        })
-        .catch(err => { throw new Error("selSql :\n" + err) });
-    return resultRequete;
+        });
+
 }
 
-function insUpdSql(requetePrepared, valueSql) {
-    const requete = requeteSql(requetePrepared, valueSql)
-    const resultRequete = requete
+function insUpdDelSql(requetePrepared, valueSql) {
+    return requeteSql(requetePrepared, valueSql)
         .then(rows => rows[0])
-        .catch(err => { throw new Error(err) });
-    return resultRequete;
+        .then((result) => {
+            if (result.warningStatus == 0 || result.changedRows === 1) {
+                return true;
+            }
+            console.log(result);
+            throw new Error("changement non effectif");
+        })
+        .catch(err => {
+            console.log(err);
+            for (let i = 0; i < codeError.length; i++) {
+                if (err.errno === codeError[i])
+                    throw new Error(nameError[i]);
+            }
+            throw new Error("Erreur inconnue");
+        });
 }
 
 module.exports = {
     requeteSql,
     selSql,
-    insUpdSql
+    insUpdDelSql,
 }
