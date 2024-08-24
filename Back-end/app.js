@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
 */
 const express = require("express");
 const app = express();
-app.use(express.json());
+
 var corsOptions = {
     origin: process.env.scheme_front + '://' + process.env.host_front + ':' + process.env.port_front,
     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
@@ -25,6 +25,7 @@ var corsOptions = {
 }
 app.use(cors(corsOptions));
 app.use(cookie());
+app.use(express.json());
 
 //require route
 const signUp = require("./route/account/signUp");
@@ -37,6 +38,8 @@ const getCard = require("./route/card/getCard");
 const editCard = require("./route/card/editCard");
 const uploadProfilePicture = require("./route/card/uploadProfilePicture");
 const uploadCompanyLogo = require("./route/card/uploadCompanyLogo");
+const test = require("./route/test");
+const getCardsImg = require("./route/card/getCardsImg")
 
 
 app.post('/signup', signUp);
@@ -59,13 +62,18 @@ app.post("/uploadProfilePicture", uploadProfilePicture);
 
 app.post("/uploadCompanyLogo", uploadCompanyLogo);
 
+app.get("/getCardsImg", getCardsImg);
+
+app.post("/test", test);
+
 //app.use('/uploads', express.static(path.join(__dirname, 'uploads')));;
 
 
 
 // Middleware d'erreur
 app.use((err, req, res, next) => {
-    console.error(`Erreur capturée: ${err.message}`);
+
+    console.error(`Erreur capturée: ${err}`);
     res.status(500).send('Quelque chose a mal tourné!');
 });
 

@@ -1,6 +1,58 @@
 const maxLengthPassword = 100;
 const minLengthPassword = 8;
 const maxLengthName = 100;
+
+function removeKeyDict(dict, keys) {
+    tempDict = {};
+    for (keyDict of Object.keys(dict)) {
+        let copy = true;
+        for (keyList of keys) {
+            if (keyDict == keyList) {
+                copy = false;
+                break;
+            }
+        }
+        if (copy) {
+            tempDict[keyDict] = dict[keyDict];
+        }
+    }
+    return tempDict;
+}
+
+function removeData(dict, keys, rows = false) {
+    if (rows === false) {
+        return removeKeyDict(dict, keys)
+    } else {
+        tempList = [];
+        for (row of dict) {
+            tempList.push(removeKeyDict(row, keys));
+        }
+        return tempList;
+    }
+}
+
+function checkFileFieldName(fieldNames, files) {
+    const promesse = (resolve, reject) => {
+        let listFiles = [];
+        for (fieldName of fieldNames) {
+            for (file of files) {
+                if (file.fieldname == fieldName) {
+                    listFiles.push(file);
+                    break;
+                }
+            }
+        }
+        if (listFiles.length != fieldNames.length) {
+            reject(new Error("fieldName manquant"));
+        } else {
+            resolve(listFiles);
+        }
+
+    }
+    return new Promise(promesse);
+
+}
+
 function checkExistKeyDict(keys, dict) {
     /*
         Prends en argument une liste de clé 
@@ -16,29 +68,27 @@ function checkExistKeyDict(keys, dict) {
         for (element of keys) {
             if (dict[element] === undefined) {
                 console.log("pas les " + element + " demandés\ncontenue du body : " + JSON.stringify(dict));
-                reject("clé erreur");
+                reject(new Error("clé erreur"));
             }
-            if (dict[element] === "email") {
+            switch (element) {
+                case "email":
+                    var sanityValue = returnAValidEmail(dict[element]);
+                    if (!sanityValue) {
+                        reject(new Error("email incorrect"));
+                    }
+                    break;
+                case "password":
+                    var sanityValue = checkPasswordValidity(dict[element]);
+                    if (!sanityValue) {
+                        reject(new Error("mot de passe incorrect"));
+                    }
+                    break;
+                default:
+                    var sanityValue = checkNamevalidity(dict[element]);
+                    if (!sanityValue) {
+                        reject(new Error("name incorrect"));
+                    }
 
-                var sanityValue = returnAValidEmail(dict[element]);
-                if (!sanityValue) {
-                    console.log("email incorrect");
-                    reject("email incorrect");
-                }
-                continue;
-            }
-            if (dict[element] === "password") {
-                var sanityValue = checkPasswordValidity(dict[element]);
-                if (!sanityValue) {
-                    console.log("mot de passe incorrect");
-                    reject("mot de passe incorrect");
-                }
-
-            }
-            var sanityValue = checkNamevalidity(dict[element]);
-            if (!sanityValue) {
-                console.log("name incorrect");
-                reject("name incorrect");
             }
             listValue.push(sanityValue);
         }
@@ -72,5 +122,5 @@ function returnAValidEmail(email) {
 }
 
 module.exports = {
-    checkExistKeyDict
+    checkExistKeyDict, checkFileFieldName, removeData
 };

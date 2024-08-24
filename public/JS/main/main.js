@@ -33,14 +33,6 @@ function getParamUrl() {
     return params;
 }
 
-let cookie = getCookie();
-let pathName = window.location.pathname;
-if (pathName === "/" || pathName === "/index.html") {
-    if (cookie["connected"] != undefined) {
-        window.location.href = "monespace.html";
-    }
-}
-
 function getComponents(nom) {
     let hote = location.host;
 
@@ -87,6 +79,15 @@ function getPublic(css, script) {
     return new Promise(promesse);
 }
 
+let cookie = getCookie();
+let pathName = window.location.pathname;
+if (pathName === "/" || pathName === "/index.html") {
+    if (cookie["connected"] != undefined) {
+        window.location.href = "monespace.html";
+    }
+}
+
+
 let css = ["fontGoogle.css", "main.css"];
 let script = ["redirect.js", "animNav.js", "request.js", "logOut.js"];
 
@@ -99,6 +100,7 @@ if (cookie["connected"] == undefined) {
     var getNavBtn = getComponents("navConnect.html");
     var getMenuBtn = getComponents("menuConnect.html");
 }
+
 const constructNav = Promise.all([getNav, getNavBtn, getMenuBtn]);
 constructNav
     .then((htmls) => {

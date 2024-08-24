@@ -38,7 +38,7 @@ function sendCardImg() {
 }
 
 function getCards() {
-    getRequest("getCards", "application/json")
+    return getRequest("getCards", "application/json")
         .then(message => {
             if (message["result"]) {
                 let main = document.querySelector(".divCards");
@@ -58,6 +58,26 @@ function getCards() {
                 }
 
             }
+            return;
+        })
+        .catch(err => console.log(err));
+}
+
+function getCardsImg() {
+    getRequest("getCardsImg", "multipart/x-mixed-replace; boundary=frame")
+        .then((response) => {
+            return response.body.getReader();
+        })
+        .then((reader) => {
+            return readerStream(reader)
+        })
+        .then(result => {
+            let decoder = new TextDecoder('iso-8859-1');
+            let resultDecodeAscii = decoder.decode(result);
+            let framesBinarie = splitBinarie(result, resultDecodeAscii, "--frame\r\n");
+            console.log(framesBinarie);
+            let profilePicture = new Blob([framesBinarie[0]["binarie"]], { type: framesBinarie[0]["contentType"] });
+            document.getElementsByClassName("profilPicture")[0].src = URL.createObjectURL(profilePicture);
         })
         .catch(err => console.log(err));
 }
@@ -107,13 +127,11 @@ function addCardInTemplate(cardInfos, templateId, typeElement, attribute, elemen
     let clone = document.importNode(template.content, true);
     let card = cardInfos;
     for (key of Object.keys(card)) {
-        if (!(key == "id" || key == "idUser")) {
-            if (attribute == "value") {
-                clone.querySelector(typeElement + key).value = card[key];
-            }
-            if (attribute == "innerText") {
-                clone.querySelector(typeElement + key).innerText = card[key];
-            }
+        if (attribute == "value") {
+            clone.querySelector(typeElement + key).value = card[key];
+        }
+        if (attribute == "innerText") {
+            clone.querySelector(typeElement + key).innerText = card[key];
         }
     }
     if (elementDest === false) {

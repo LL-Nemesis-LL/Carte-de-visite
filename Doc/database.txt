@@ -25,5 +25,7 @@ CREATE TABLE visitCards(
     city VARCHAR(100) NOT NULL,
     postalCode CHAR(5) NOT NULL,
     phoneNumber CHAR(10) NOT NULL,
-    FOREIGN KEY (idUser) REFERENCES users(id)
+    FOREIGN KEY (idUser) REFERENCES users(id),
+    companyLogo VARCHAR(100) NOT NULL UNIQUE,
+    profilPicture VARCHAR(100) NOT NULL UNIQUE
 );

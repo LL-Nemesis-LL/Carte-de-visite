@@ -55,7 +55,6 @@ router.post("/signin", (req, res) => {
             retourFrontEnd["result"] = true;
         })
         .catch((erreur) => {
-            console.log(erreur);
             retourFrontEnd["result"] = false;
             retourFrontEnd["message"] = erreur.message;
         })

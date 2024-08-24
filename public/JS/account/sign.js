@@ -1,6 +1,7 @@
-function sendInscription() {
+function sendInscription(event) {
+    event.preventDefault();
     let data = getValueForm("formSignup")
-    sendRequest("signup", "application/json", data)
+    sendRequest("signup", JSON.stringify(data))
         .then(data => {
             if (data["result"] == true) {
                 window.location.href = "monespace.html";
@@ -10,7 +11,8 @@ function sendInscription() {
         })
 }
 
-function sendConnexion() {
+function sendConnexion(event) {
+    event.preventDefault();
     let data = getValueForm("formSignin");
     sendRequest("signin", JSON.stringify(data))
         .then(data => {
@@ -22,20 +24,17 @@ function sendConnexion() {
         })
 }
 
-window.addEventListener("load", () => {
-    document.getElementById("formSignup").addEventListener("submit", (event) => {
-        event.preventDefault();
-        let data = getValueForm("formSignup");
-    })
-
-});
 
 getPublic([], ["request.js"]);
 
-window.addEventListener("load", () => {
 
-    document.getElementById("formSignin").addEventListener('submit', (event) => {
-        event.preventDefault();
-        sendConnexion();
-    });
+window.addEventListener("load", () => {
+    let formSingup = document.getElementById("formSignup");
+    let formSignin = document.getElementById("formSignin");
+    if (formSingup != undefined) {
+        formSignup.addEventListener("submit", sendInscription)
+    }
+    if (formSignin != undefined) {
+        formSignin.addEventListener("submit", sendConnexion)
+    }
 });

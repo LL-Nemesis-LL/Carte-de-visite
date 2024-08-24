@@ -2,6 +2,7 @@ const myDB = require("../DB");
 const crypto = require("crypto");
 
 function checkConnecting(cookie) {
+    console.log(cookie);
     const checkToken = (resolve, reject) => {
         if (cookie["token"] != undefined) {
             const request = myDB.selSql("SELECT * FROM users WHERE token = ?", [cookie["token"]])
@@ -11,15 +12,15 @@ function checkConnecting(cookie) {
                         if (result["token"] != 0) {
                             resolve(result);
                         } else {
-                            reject("l'utilisateur est déconnecté");
+                            reject(new Error("l'utilisateur est déconnecté"));
                         }
                     } else {
-                        reject("token plus valide");
+                        reject(new Error("token plus valide"));
                     }
                 })
                 .catch(err => reject(err))
         } else {
-            reject("pas de token");
+            reject(new Error("pas de token"));
         }
     }
     return new Promise(checkToken)
