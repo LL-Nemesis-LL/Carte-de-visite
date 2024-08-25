@@ -1,4 +1,4 @@
-getPublic(["showCarte.css"], ["request.js", "card.js"])
+getPublic(["showCarte.css"], ["main/request.js", "card/cardRequest.js"])
     .then(() => {
 
         window.addEventListener("load", () => {

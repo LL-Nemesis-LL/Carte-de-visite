@@ -1,5 +1,5 @@
 css = ["ajoutCarte.css"];
-script = ["animAjoutCarte.js", "card.js", "request.js"];
+script = ["card/animAddCard.js", "card/cardRequest.js", "main/request.js"];
 getPublic(css, script);
 window.addEventListener("load", () => {
     document.getElementById("formAjoutCarte").addEventListener("submit", (event) => {

@@ -25,7 +25,7 @@ function sendConnexion(event) {
 }
 
 
-getPublic([], ["request.js"]);
+getPublic([], ["main/request.js"]);
 
 
 window.addEventListener("load", () => {

@@ -1,4 +1,4 @@
-getPublic(["ajoutCarte.css"], ["card.js", "request.js"])
+getPublic(["ajoutCarte.css"], ["card/cardRequest.js", "main/request.js"])
     .then(() => {
         window.addEventListener("load", () => {
             let paramUrl = getParamUrl();

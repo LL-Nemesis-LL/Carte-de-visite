@@ -89,7 +89,7 @@ if (pathName === "/" || pathName === "/index.html") {
 
 
 let css = ["fontGoogle.css", "main.css"];
-let script = ["redirect.js", "animNav.js", "request.js", "logOut.js"];
+let script = ["main/redirect.js", "main/animNav.js", "main/request.js", "account/logOut.js"];
 
 let getNav = getComponents("nav.html");
 getPublic(css, script);
