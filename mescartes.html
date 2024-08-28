@@ -11,51 +11,108 @@
 
 <body class="full flexColumn">
     <nav></nav>
-    <template id="templateCard">
-        <div class="flexColumn divCarte">
-            <div class="flexRow full divTitle">
+    <template id="templateCardVertical">
+        <div class="divCard flexColumn full">
+            <div class="flexRow spaceBetween full">
                 <h3 class="titleCard"></h3>
-                <button type="button" class="action partager">Partager</button>
-            </div>
-
-            <div class="flexColumn divFirstInfos">
-                <img class="profilPicture" src="public/assets/account.svg" alt="" class="">
-                <div class="flexRow divName">
-                    <span class="firsName"></span>
-                    <span class="lastName"></span>
-                </div>
-                <div class="divPostName">
-                    <span class="postName"></span>
+                <div>
+                    <button type="button" class="action partager">Partager</button>
                 </div>
             </div>
-            <div class="ligne ligneOrange"></div>
-            <div class="flexRow companyInfo full">
-                <div class="flexColumn divInfo">
-                    <label for="">Société</label>
-                    <span class="companyName"></span>
+            <div class="flexColumn card vertical full">
+                <div class="flexRow divFirstInfos full">
+                    <div class="flexColumn divBasicInfos">
+                        <img class="profilPicture" src="" alt="" class="">
+                        <div class="flexRow flexWrap gap5">
+                            <span class="firstName"></span>
+                            <span class="lastName"></span>
+                        </div>
+                        <div class="divPostName">
+                            <span class="postName"></span>
+                        </div>
+                    </div>
+                    <img src="" class="companyLogo" alt="">
                 </div>
-                <div class="flexColumn divInfo ">
-                    <label for="">Service</label>
-                    <span class="serviceName"></span>
+                <div class="ligneOrangevertical"></div>
+                <div class="flexColumn divSecondInfos full">
+                    <div class="flexRow spaceBetween full">
+                        <div class="divInfo">
+                            <label for="">Société</label>
+                            <span class="companyName"></span>
+                        </div>
+                        <div class="divInfo">
+                            <label for="">Service</label>
+                            <span class="serviceName"></span>
+                        </div>
+                    </div>
+                    <div class="divInfo">
+                        <label for="">Numéro de téléphone</label>
+                        <span class="phoneNumber"></span>
+                    </div>
+                    <div class="divInfo">
+                        <label for="">E-mail</label>
+                        <span class="email"></span>
+                    </div>
+                    <div class="divInfo">
+                        <label for="">Coordonnées</label>
+                        <span class="districtName"></span>
+                        <span class="city"></span>
+                    </div>
                 </div>
             </div>
-            <div class="flexColumn divInfo">
-                <label for="">Numéro de téléphone</label>
-                <span class="phoneNumber"></span>
+            <div class="flexRow divButton full">
+                <button type="button" class="action blue edit"><span>Modifier</span><img src="" alt=""></button>
+                <button type="button" class="action red delete"><span>Supprimer</span><img src="" alt=""></button>
             </div>
-            <div class="flexColumn divInfo">
-                <label for="">E-mail</label>
-                <span class="email"></span>
-            </div>
-            <div class="flexColumn divInfo">
-                <label for="">Coordonnées</label>
-                <div class="flexRow divAddress">
-                    <span class="streetNumber"></span>
-                    <span class="districtName"></span>
-                    <span class="postalCode"></span>
-                    <span class="city"></span>
+        </div>
+    </template>
+    <template id="templateCardHorizontal">
+        <div class="divCard flexColumn full">
+            <div class="flexRow spaceBetween full">
+                <h3 class="titleCard"></h3>
+                <div>
+                    <button type="button" class="action partager">Partager</button>
                 </div>
-
+            </div>
+            <div class="flexColumn card horizontal" id="cardHorizon">
+                <div class="divFirstInfos flexRow full">
+                    <div class="flexColumn divBasicInfos">
+                        <img src="" class="profilPicture" alt="">
+                        <div class="flexRow flexWrap gap5">
+                            <span class="firstName"></span>
+                            <span class="lastName"></span>
+                        </div>
+                        <div class="divPostName">
+                            <span class="postName"></span>
+                        </div>
+                    </div>
+                    <div class="ligneOrangehorizontal"></div>
+                    <div class="flexColumn">
+                        <img src="" class="companyLogo" alt="">
+                        <span class="companyName"></span>
+                    </div>
+                </div>
+                <div class="flexColumn divSecondInfos full">
+                    <div class="flexColumn divInfo ">
+                        <img src="public/assets/service.svg" class="iconeCard" alt="">
+                        <span class="serviceName"></span>
+                    </div>
+                    <div class="flexColumn divInfo">
+                        <img src="public/assets/telephone.svg" class="iconeCard" alt="">
+                        <span class="phoneNumber"></span>
+                    </div>
+                    <div class="flexColumn divInfo">
+                        <img src="public/assets/email.svg" class="iconeCard" alt="">
+                        <span class="email"></span>
+                    </div>
+                    <div class="flexRow divCoordonnees">
+                        <img src="public/assets/immeuble.svg" class="iconeCard" alt="">
+                        <div class="divInfo">
+                            <span class="districtName"></span>
+                            <span class="city"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="flexRow divButton full">
                 <button type="button" class="action blue edit"><span>Modifier</span><img src="" alt=""></button>
@@ -64,9 +121,8 @@
         </div>
     </template>
     <main class="full flexColumn">
-
-        <div class="flexColumn divCards">
-
+        <button type="button" class="action blue" onclick="changeRotate()">Changer la rotation des cartes</button>
+        <div class="flexColumn divCards full" id="divCards">
         </div>
     </main>
 </body>

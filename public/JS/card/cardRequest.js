@@ -40,31 +40,17 @@ function sendCardImg() {
 function getCards() {
     return getRequest("getCards", "application/json")
         .then(message => {
-            if (message["result"]) {
-                let main = document.querySelector(".divCards");
-                if (message["cards"].length > 0) {
-                    for (card of message["cards"]) {
-                        let cloneTemplate = addCardInTemplate(card, "templateCard", ".", "innerText")
-                        cloneTemplate.querySelector(".delete").addEventListener("click", () => {
-                            deleteCard(card["id"]);
-                        })
-                        cloneTemplate.querySelector(".edit").addEventListener("click", () => {
-                            editCard(card["id"]);
-                        })
-                        main.appendChild(cloneTemplate);
-                    }
-                } else {
-                    main.append("Aucun résultat");
-                }
-
+            if (message["result"] === true) {
+                return message["cards"];
+            } else {
+                throw new Error("resultat get cards faux");
             }
-            return;
         })
         .catch(err => console.log(err));
 }
 
 function getCardsImg() {
-    getRequest("getCardsImg", "multipart/x-mixed-replace; boundary=frame")
+    return getRequest("getCardsImg", "multipart/x-mixed-replace; boundary=frame")
         .then((response) => {
             return response.body.getReader();
         })
@@ -75,9 +61,16 @@ function getCardsImg() {
             let decoder = new TextDecoder('iso-8859-1');
             let resultDecodeAscii = decoder.decode(result);
             let framesBinarie = splitBinarie(result, resultDecodeAscii, "--frame\r\n");
-            console.log(framesBinarie);
-            let profilePicture = new Blob([framesBinarie[0]["binarie"]], { type: framesBinarie[0]["contentType"] });
-            document.getElementsByClassName("profilPicture")[0].src = URL.createObjectURL(profilePicture);
+            return framesBinarie;
+        })
+        .then((frames) => {
+            let urlImages = [];
+            for (image of frames) {
+                let blobUrl = new Blob([image["binarie"]], { type: image["contentType"] });
+                let urlImage = URL.createObjectURL(blobUrl);
+                urlImages.push(urlImage);
+            }
+            return urlImages;
         })
         .catch(err => console.log(err));
 }
@@ -99,7 +92,7 @@ function getCard(id) {
     sendRequest("getCard", "application/json", data)
         .then((message) => {
             if (message["result"] == true) {
-                addCardInTemplate(message["card"], "editCard", "#", "value", "main");
+                addInfosCardInTemplate(message["card"], "editCard", "#", "value", "main");
             }
         })
         .catch(err => console.log(err));
@@ -119,23 +112,4 @@ function sendEditCard() {
 
 function editCard(id) {
     window.location.href = "modifCarte.html?id=" + id;
-}
-
-function addCardInTemplate(cardInfos, templateId, typeElement, attribute, elementDest = false) {
-
-    let template = document.getElementById(templateId);
-    let clone = document.importNode(template.content, true);
-    let card = cardInfos;
-    for (key of Object.keys(card)) {
-        if (attribute == "value") {
-            clone.querySelector(typeElement + key).value = card[key];
-        }
-        if (attribute == "innerText") {
-            clone.querySelector(typeElement + key).innerText = card[key];
-        }
-    }
-    if (elementDest === false) {
-        return clone;
-    }
-    document.querySelector(elementDest).append(clone);
 }

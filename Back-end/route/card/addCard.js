@@ -34,7 +34,7 @@ const readFiles = multer({
 router.post("/addcard", readFiles.any(), (req, res) => {
     const data = req.body;
     const listdata = ["titleCard", "postName", "serviceName", "email", "companyName",
-        "streetNumber", "districtName", "city", "postalCode", "phoneNumber"];
+        "districtName", "city", "phoneNumber"];
     const listFieldName = ["companyLogo", "profilPicture"];
     let retourFrontEnd = {};
     // vérifie que toutes les données sont présentes
@@ -61,8 +61,8 @@ router.post("/addcard", readFiles.any(), (req, res) => {
             valueSql.unshift(result["id"]);
             return Promise.all([myDB.insUpdDelSql(
                 "INSERT INTO visitCards(idUser, titleCard, postName, serviceName, email,\
-                companyName, streetNumber, districtName, city,  postalCode, phoneNumber, companyLogo, profilPicture) \
-                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                companyName, districtName, city, phoneNumber, companyLogo, profilPicture) \
+                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 valueSql), files]);
         })
         .then(([result, files]) => {

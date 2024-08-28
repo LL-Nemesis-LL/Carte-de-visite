@@ -8,9 +8,17 @@ router.get("/getCards", (req, res) => {
     let retourFrontEnd = {};
     token.checkConnecting(req.cookies)
         .then(result => {
-            return myDB.selSql("SELECT * FROM visitCards WHERE idUser=?", [result["id"]], allRows = true);
+            return myDB.selSql("SELECT \
+                titleCard, postName,  serviceName,  visitCards.email, \
+                companyName, districtName, city, phoneNumber, \
+                lastName, firstName \
+                FROM visitCards \
+                INNER JOIN users \
+                ON users.id = visitCards.idUser \
+                WHERE idUser=?",
+                [result["id"]], allRows = true);
         })
-        .then(cards => {
+        .then((cards) => {
             cards = checkData.removeData(cards, ["companyLogo", "profilPicture", "idUser", 'id'], true);
             console.log(cards);
             retourFrontEnd["result"] = true;

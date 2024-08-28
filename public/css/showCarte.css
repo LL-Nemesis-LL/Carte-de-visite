@@ -1,21 +1,125 @@
-.divCards {
+/*default*/
+.flexWrap {
+    flex-wrap: wrap;
+    align-items: start;
+    justify-content: start;
+}
+
+.gap5 {
+    gap: 5px
+}
+
+.gap10 {
     gap: 10px;
 }
 
-.divCarte {
-    background-color: var(--gris-fonce);
-    border-radius: 10px;
-    padding: 15px;
-    align-items: flex-start;
-    gap: 15px;
-    box-shadow: var(--bow-shadow)
-}
-
-.divTitle {
+.spaceBetween {
     justify-content: space-between;
 }
 
-.divInfo {
+/*card Horizontal*/
+#fondCardHorizon {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(128, 128, 128, 0.445);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+
+
+#contentCardHorizon {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    rotate: 90deg;
+}
+
+/*card*/
+.divCards {
+    gap: 30px;
+
+}
+
+.card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 15px;
+    gap: 15px;
+    box-shadow: 5px 5px 10px rgb(177, 177, 177);
+    border: 1px solid rgb(178, 178, 178);
+    box-sizing: border-box;
+}
+
+.profilPicture {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+
+.companyLogo {
+    height: 100px;
+    max-width: 140px;
+    border-radius: 10px;
+}
+
+.divFirstInfos {
+    align-self: start;
+    gap: 5px;
+    height: 120px;
+    justify-content: space-between;
+
+}
+
+.divBasicInfos {
+    align-items: flex-start;
+    gap: 2px;
+}
+
+.firstName,
+.lastName {
+    font-weight: 500;
+}
+
+
+.divPostName {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.divSecondInfos {
+    justify-content: start;
+    align-items: start;
+    gap: 7px;
+}
+
+/*vertical card*/
+
+.vertical {
+
+    width: 350px;
+}
+
+
+.ligneOrangevertical {
+    background-color: orange;
+    height: 2px;
+    width: 100%;
+}
+
+.vertical .divInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
     align-items: flex-start;
 }
 
@@ -25,37 +129,52 @@
     color: var(--bleu)
 }
 
-.divFirstInfos {
+/* Horizontal card*/
+.horizontal {
+    width: 550px;
+    justify-content: start;
+}
+
+.horizontal .divCompanyInfo {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    gap: 10px
+}
+
+.ligneOrangehorizontal {
+    height: 100%;
+    box-sizing: border-box;
+    width: 2px;
+    background-color: orange;
+}
+
+.horizontal .divInfo {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 5px;
+    align-items: center;
+}
+
+.iconeCard {
+    width: 20px;
+}
+
+
+.divCoordonnees {
+    margin-top: auto;
     align-items: flex-start;
-    gap: 10px;
-    margin-bottom: 15px;
+    justify-content: flex-start;
+    gap: 5px
 }
 
-.profilePicture {
-    border-radius: 50%;
-    width: 70px;
+.divCoordonnees .divInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
-.divName {
-    gap: 5px;
-}
-
-.divName span {
-    font-size: 15px;
-    font-weight: 400;
-}
-
-.divPostName {
-    border: 1px solid black;
-    border-radius: 5px;
-    padding: 5px;
-}
-
-.companyInfo {
-    justify-content: space-between;
-    gap: 10px;
-}
-
-.divAddress {
-    gap: 5px;
+.divCoordonnees span {
+    text-align: left;
 }

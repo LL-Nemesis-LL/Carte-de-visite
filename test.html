@@ -5,123 +5,118 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
+    <link rel="stylesheet" href="public/css/main.css">
+    <link rel="stylesheet" href="public/css/showCarte.css">
 </head>
 
 <body>
-    <form enctype="multipart/form-data" id="form">
-        <input type="text" value="test" name="text">
-        <input type="file" name="file">
-        <input type="file" name="file">
-        <input type="submit">
-    </form>
-    <script>
-        async function readerStream(reader) {
-            let newBuffer = [];
-            while (true) {
-                const { done, value } = await reader.read();
-                if (done) {
-                    return new Uint8Array(newBuffer);
-                }
-                newBuffer = newBuffer.concat(Array.from(value));
-            }
-
-        }
-        function splitBinarie(binarieArray, asciiArray, keyWord) {
-            /*
-                Cette fonction nous permet de traité une response
-                serveur contenant plusieurs fichiers de type différent.
-
-                Chaque début de fichiers est spéifié par un mot clé
-                et contiennent tous un header Content-Type.
-
-                Exemple:
-                --frame\r\n
-                Content-Type: image/jpg\r\n
-                
-
-                en paramètre on à la réponse de la requête au format
-                binaire, au format ascii ou le mot clé nous
-                permettant de séquences les fichiers.
-            */
-
-            let contentType = "Content-Type: "
-            let lengthKeyWord = keyWord.length;
-
-            // on separe par le mot clé qui définit chaque début d'un fichier
-            let framesAscii = asciiArray.split(keyWord);
-            framesAscii = framesAscii.slice(1);
-            let framesBinarie = [];
-            let startIndexBinarie = 0;
-
-            for (let i = 0; i < framesAscii.length; i++) {
-                let frameBinarie = { contentType: "", binarie: "" };
-                let lengthFrameAscii = framesAscii[i].length;
-
-                //on se place au début des données du fichier
-                let startIndexFrameBinarie = framesAscii[i].indexOf("\r\n\r\n") + 4;
-                startIndexBinarie += startIndexFrameBinarie + keyWord.length;
-
-                //on récupère le Content-Type
-                frameBinarie["contentType"] = framesAscii[i].slice(contentType.length, startIndexFrameBinarie - 4);
-
-                //on détermine la longeur du fichier éliminant les headers
-                let lengthFrameBinarie = lengthFrameAscii - startIndexFrameBinarie;
-
-                //on récupère la séquence des données du fichier
-                let binarie = binarieArray.slice(startIndexBinarie, startIndexBinarie + lengthFrameBinarie);
-
-                //on le stock dans un tableau d'octet
-                let newBuffer = new Uint8Array(binarie);
-                frameBinarie["binarie"] = newBuffer;
-                framesBinarie.push(frameBinarie);
-
-                startIndexBinarie += lengthFrameBinarie;
-
-            }
-            return framesBinarie;
-        }
-        const listFile = [
-            "3f32d53a-5079-43a2-85c7-a53256130eea-alien.jpg"
-            , "5b463165-6340-454b-b1af-98e64a609859-alien.jpg"
-        ];
-        fetch("http://127.0.0.1:3002/test", {
-            method: "post",
-            credentials: "include",
-            headers: {
-                "Access-Control-Allow-Origin": "http://127.0.0.1:3000/",
-                "Access-Control-Allow-Credentials": "*",
-                "Access-Control-Allow-Headers": "*",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ "files": listFile }),
-        })
-            .then((response) => {
-                return response.body.getReader();
-            })
-            .then((reader) => {
-                return readerStream(reader);
-            })
-            .then(result => {
-                // encode en Ascii
-                let decoder = new TextDecoder('iso-8859-1');
-                resultDecodeAscii = decoder.decode(result);
-
-                let form = document.getElementById("form");
-
-                // sépare par "--frame";
-                let framesBinarie = splitBinarie(result, resultDecodeAscii, "--frame\r\n");
-                console.log("comment");
-                for (frame of framesBinarie) {
-                    let imageBlob = new Blob([frame["binarie"]], { type: frame["contentType"] });
-                    let imageHtml = document.createElement('img');
-                    imageHtml.src = URL.createObjectURL(imageBlob);
-                    form.append(imageHtml);
-                }
-
-            });
-    </script>
-
+    <div class="flexColumn divCards">
+        <div class="divCard flexColumn full">
+            <div class="flexRow spaceBetween full">
+                <h3 class="titleCard">le CTM</h3>
+                <div>
+                    <button type="button" class="action partager">Partager</button>
+                </div>
+            </div>
+            <div class="flexColumn card vertical full">
+                <div class="flexRow divFirstInfos full">
+                    <div class="flexColumn divBasicInfos">
+                        <img class="profilPicture" src="public/assets/account.svg" alt="" class="">
+                        <div class="flexRow flexWrap gap5">
+                            <span class="firstName">Jean-François</span>
+                            <span class="lastName">DUPONT</span>
+                        </div>
+                        <div class="divPostName">
+                            <span class="postName">Expert Cybersécurité</span>
+                        </div>
+                    </div>
+                    <img src="public/assets/CTM.ico" class="companyLogo" alt="">
+                </div>
+                <div class="ligneOrangevertical"></div>
+                <div class="flexColumn divSecondInfos full">
+                    <div class="flexRow spaceBetween full">
+                        <div class="divInfo">
+                            <label for="">Société</label>
+                            <span class="companyName">Collectivité de martinique</span>
+                        </div>
+                        <div class="divInfo">
+                            <label for="">Service</label>
+                            <span class="serviceName">Informatique</span>
+                        </div>
+                    </div>
+                    <div class="divInfo">
+                        <label for="">Numéro de téléphone</label>
+                        <span class="phoneNumber">0696xxxxxx</span>
+                    </div>
+                    <div class="divInfo">
+                        <label for="">E-mail</label>
+                        <span class="email">jean-françois.dupont@collectivitedemartinique.mq</span>
+                    </div>
+                    <div class="divInfo">
+                        <label for="">Coordonnées</label>
+                        <span class="districtName">50 Rue Schoelcher,</span>
+                        <span class="city">Fort-de-France 97200</span>
+                    </div>
+                </div>
+            </div>
+            <div class="flexRow divButton full">
+                <button type="button" class="action blue edit"><span>Modifier</span><img src="" alt=""></button>
+                <button type="button" class="action red delete"><span>Supprimer</span><img src="" alt=""></button>
+            </div>
+        </div>
+        <div class="divCard flexColumn full">
+            <div class="flexRow spaceBetween full">
+                <h3 class="titleCard">le CTMa</h3>
+                <div>
+                    <button type="button" class="action partager">Partager</button>
+                </div>
+            </div>
+            <div class="flexColumn card horizontal" id="cardHorizon">
+                <div class="divFirstInfos flexRow full">
+                    <div class="flexColumn divBasicInfos">
+                        <img src="public/assets/account.svg" class="profilPicture" alt="">
+                        <div class="flexRow flexWrap gap5">
+                            <span class="firsName">Jean-François</span>
+                            <span class="lastName">DUPONT</span>
+                        </div>
+                        <div class="divPostName">
+                            <span class="postName">Expert cybersécurité</span>
+                        </div>
+                    </div>
+                    <div class="ligneOrangehorizontal"></div>
+                    <div class="flexColumn">
+                        <img src="public/assets/CTM.ico" class="companyLogo" alt="">
+                        <span class="companyName">Collectivite de martinique</span>
+                    </div>
+                </div>
+                <div class="flexColumn divSecondInfos full">
+                    <div class="flexColumn divInfo ">
+                        <img src="public/assets/service.svg" class="iconeCard" alt="">
+                        <span class="serviceName">Informatique</span>
+                    </div>
+                    <div class="flexColumn divInfo">
+                        <img src="public/assets/telephone.svg" class="iconeCard" alt="">
+                        <span class="phoneNumber">0696xxxxxx</span>
+                    </div>
+                    <div class="flexColumn divInfo">
+                        <img src="public/assets/email.svg" class="iconeCard" alt="">
+                        <span class="email">jean-françois.dupont@collectivitedemartinique.mq</span>
+                    </div>
+                    <div class="flexRow divCoordonnees">
+                        <img src="public/assets/immeuble.svg" class="iconeCard" alt="">
+                        <div class="divInfo">
+                            <span class="districtName">50 Rue Schoelcher,</span>
+                            <span class="city">Fort-de-France 97200</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flexRow divButton full">
+                <button type="button" class="action blue edit"><span>Modifier</span><img src="" alt=""></button>
+                <button type="button" class="action red delete"><span>Supprimer</span><img src="" alt=""></button>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

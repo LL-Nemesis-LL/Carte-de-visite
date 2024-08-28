@@ -282,7 +282,6 @@ button.end {
 }
 
 button.action {
-    flex: 1;
     padding: 10px;
     border: 0;
     border-radius: 5px;
@@ -290,6 +289,8 @@ button.action {
 }
 
 .blue {
+
+    flex: 1;
     background-color: blue;
 }
 
@@ -298,6 +299,8 @@ button.action {
 }
 
 .red {
+
+    flex: 1;
     background-color: red;
 }
 
@@ -307,11 +310,15 @@ button.action {
 
 .partager {
     background-color: rgb(1, 159, 1);
-    max-width: 100px;
 }
 
 .partager:hover {
     background-color: rgb(0, 126, 0)
+}
+
+.showCardHorizon {
+    background-color: var(--bleu);
+    max-width: 200px;
 }
 
 .divButton {

@@ -3,3 +3,5 @@ package-lock.json
 package.json
 image/companyLogo/*
 image/profilPicture/*
+!image/profilPicture/3cff8801-199a-4a6c-8bb4-ebad9d91e3a2-Aucun.jpg
+!image/companyLogo/e63d9d94-923e-462d-b145-10c2a1a72f93-carte.jpg
