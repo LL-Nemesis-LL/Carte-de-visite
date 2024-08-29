@@ -4,17 +4,6 @@ const port = parseInt(process.env.port_back);
 
 const cors = require("cors");
 const cookie = require("cookie-parser");
-/*
-const multer = require('multer');
-const storage = multer.diskStorage({
-    destination: function (req, file, callback) {
-        callback(null, '/image/profilePicture');
-    },
-    filename: function (req, file, callback) {
-        callback(null, file.fieldname);
-    }
-});
-*/
 const express = require("express");
 const app = express();
 
@@ -39,7 +28,7 @@ const editCard = require("./route/card/editCard");
 const uploadProfilePicture = require("./route/card/uploadProfilePicture");
 const uploadCompanyLogo = require("./route/card/uploadCompanyLogo");
 const test = require("./route/test");
-const getCardsImg = require("./route/card/getCardsImg")
+const getCardsImg = require("./route/card/getCardsImg");
 
 
 app.post('/signup', signUp);
@@ -65,9 +54,6 @@ app.post("/uploadCompanyLogo", uploadCompanyLogo);
 app.get("/getCardsImg", getCardsImg);
 
 app.post("/test", test);
-
-//app.use('/uploads', express.static(path.join(__dirname, 'uploads')));;
-
 
 
 // Middleware d'erreur
