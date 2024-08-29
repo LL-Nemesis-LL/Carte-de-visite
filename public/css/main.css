@@ -286,6 +286,13 @@ button.action {
     border: 0;
     border-radius: 5px;
     color: white;
+    background-color: var(--orange);
+    transition: all 0.5s;
+}
+
+button.action:hover {
+    color: var(--orange);
+    background-color: white;
 }
 
 .blue {
