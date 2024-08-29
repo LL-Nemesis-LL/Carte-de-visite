@@ -27,7 +27,6 @@ const getCard = require("./route/card/getCard");
 const editCard = require("./route/card/editCard");
 const uploadProfilePicture = require("./route/card/uploadProfilePicture");
 const uploadCompanyLogo = require("./route/card/uploadCompanyLogo");
-const test = require("./route/test");
 const getCardsImg = require("./route/card/getCardsImg");
 
 
@@ -52,8 +51,6 @@ app.post("/uploadProfilePicture", uploadProfilePicture);
 app.post("/uploadCompanyLogo", uploadCompanyLogo);
 
 app.get("/getCardsImg", getCardsImg);
-
-app.post("/test", test);
 
 
 // Middleware d'erreur

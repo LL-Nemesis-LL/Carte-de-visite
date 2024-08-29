@@ -29,22 +29,29 @@ function extractPicturesFromSqlRequest(Pictures) {
 function createListPathPicture(dict) {
     let companyLogo = "companyLogo";
     let profilPicture = "profilPicture";
-    let listFiles = [];
+    let listCompanyLogo = [];
+    let listProfilPicture = [];
     let pathImage = __dirname + "../../../../image/";
     if (dict[companyLogo] != undefined) {
         for (file of dict[companyLogo]) {
-            var fullPath = path.join(pathImage + companyLogo + '/' + file);
-            listFiles.push(fullPath);
+            let fullPath = path.join(pathImage + companyLogo + '/' + file);
+            listCompanyLogo.push(fullPath);
         }
 
     }
     if (dict[profilPicture] != undefined) {
         for (file of dict[profilPicture]) {
-            var fullPath = path.join(pathImage + profilPicture + '/' + file);
-            listFiles.push(fullPath);
+            let fullPath = path.join(pathImage + profilPicture + '/' + file);
+            listProfilPicture.push(fullPath);
         }
     }
-    console.log(listFiles);
+    let listFiles = [];
+    if (listProfilPicture.length === listCompanyLogo.length) {
+        for (let i = 0; i < listProfilPicture.length; i++) {
+            listFiles.push(listProfilPicture[i]);
+            listFiles.push(listCompanyLogo[i]);
+        }
+    }
     return listFiles;
 }
 
@@ -81,6 +88,7 @@ router.get("/getCardsImg", (req, res) => {
             );
         })
         .then((result) => {
+            console.log(result);
             let pictures = extractPicturesFromSqlRequest(result);
             let files = createListPathPicture(pictures);
 
