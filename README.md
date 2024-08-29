@@ -5,6 +5,14 @@
 
 Vous entrez vos données personnelles comme le nom de votre poste, service, numéro de téléphone, email, une photo de profil, le logo de l'établissement ainsi que son adresse. Vous aurez la possibilité de générer une carte de visite dans un format horizontal ou vertical.
 
+## Version vertical
+
+![](Doc/Apercue%20carte%20de%20visite%20vertical.png)
+
+## Version horizontal
+
+![](Doc/Apercue%20carte%20de%20visite%20horizontal.png)
+
 ## Utilisation
 
 Ce projet m'a permis de découvrir la notion de **promesse** en **JavaScript**, le **transfert de fichier**, l'**API Fetch**, la **cryptographie**, la configuration des **cookies** de manière sécurisée, la **fragmentation des fichiers JS en modules** et l'utilisation des **variables d'environnement**.
