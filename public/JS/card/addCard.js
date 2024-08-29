@@ -7,7 +7,11 @@ window.addEventListener("load", () => {
         let data = getValueForm("formAjoutCarte", true);
         console.log(data);
         sendRequest("addCard", data, "").then((response) => {
-            console.log(response);
-        })
+            if (response["result"] == true) {
+                window.location.href = "mescartes.html";
+            } else {
+                console.log("une erreur est survenue");
+            }
+        });
     });
 })
