@@ -25,8 +25,6 @@ const getCards = require("./route/card/getCards");
 const delCard = require("./route/card/delCard");
 const getCard = require("./route/card/getCard");
 const editCard = require("./route/card/editCard");
-const uploadProfilePicture = require("./route/card/uploadProfilePicture");
-const uploadCompanyLogo = require("./route/card/uploadCompanyLogo");
 const getCardsImg = require("./route/card/getCardsImg");
 
 
@@ -45,10 +43,6 @@ app.post("/delcard", delCard);
 app.post("/getCard", getCard);
 
 app.post("/editCard", editCard);
-
-app.post("/uploadProfilePicture", uploadProfilePicture);
-
-app.post("/uploadCompanyLogo", uploadCompanyLogo);
 
 app.get("/getCardsImg", getCardsImg);
 
