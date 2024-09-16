@@ -18,7 +18,7 @@ router.post('/signUp', (req, res) => {
 
             // Génère un token et Capture l'heure actuelle
             let myToken = token.generate();
-            let time = token.timeNow()
+            let time = token.timeNowInMinutes()
             valueSql.push(myToken, time);
 
             // Requête sql insert un nouvel utilisateur
@@ -31,8 +31,8 @@ router.post('/signUp', (req, res) => {
         })
         .then(([myToken, result]) => {
             retourFrontEnd["result"] = true;
-            res.cookie("token", myToken, { maxAge: process.env.msTimeCookie, secure: true, httpOnly: true, sameSite: 'strict' });
-            res.cookie("connected", true, { maxAge: process.env.msTimeCookie, secure: true, sameSite: 'strict' });
+            res.cookie("token", myToken, { maxAge: process.env.msTimeTokenRevoke, secure: true, httpOnly: true, sameSite: 'strict' });
+            res.cookie("connected", true, { maxAge: process.env.msTimeTokenRevoke, secure: true, sameSite: 'strict' });
         })
         .catch((erreur) => {
             console.log(erreur);

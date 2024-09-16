@@ -5,7 +5,7 @@ const token = require("../../token/token");
 
 router.get("/logout", (req, res) => {
     let retourFrontEnd = {};
-    token.checkConnecting(req.cookies)
+    token.checkConnecting(req.cookies, res)
         .then((result) => {
             return myDB.insUpdDelSql("UPDATE users SET token=? WHERE id=?", [0, result["id"]])
         })

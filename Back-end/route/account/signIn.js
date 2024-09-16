@@ -7,6 +7,7 @@ const sha256 = require("js-sha256");
 
 
 router.post("/signin", (req, res) => {
+    console.log(req.body)
     /*
         Réalise de manière asynchrone les vérifications et
         l'attribution d'un token pour l'utilisateur. 
@@ -40,7 +41,7 @@ router.post("/signin", (req, res) => {
         .then((valueSql) => {
             // Génère un token et Capture l'heure actuelle
             let myToken = token.generate();
-            let time = token.timeNow();
+            let time = token.timeNowInMinutes();
 
             // Requête SQL UPDATE pour changer le token enregistrer en DB et l'heure de création du token
             return Promise.all([
@@ -50,8 +51,8 @@ router.post("/signin", (req, res) => {
         })
         .then(([myToken, result]) => {
             // Création des cookies de connexion
-            res.cookie("token", myToken, { maxAge: process.env.msTimeCookie, secure: true, httpOnly: true, sameSite: 'strict' });
-            res.cookie("connected", true, { maxAge: process.env.msTimeCookie, secure: true, sameSite: 'strict' });
+            res.cookie("token", myToken, { maxAge: process.env.msTimeTokenRevoke, secure: true, httpOnly: true, sameSite: 'strict' });
+            res.cookie("connected", true, { maxAge: process.env.msTimeTokenRevoke, secure: true, sameSite: 'strict' });
             retourFrontEnd["result"] = true;
         })
         .catch((erreur) => {

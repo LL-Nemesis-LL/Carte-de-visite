@@ -6,7 +6,7 @@ const checkData = require("../../checkData/checkData");
 
 router.get("/getCards", (req, res) => {
     let retourFrontEnd = {};
-    token.checkConnecting(req.cookies)
+    token.checkConnecting(req.cookies, res)
         .then(result => {
             return myDB.selSql("SELECT \
                 titleCard, postName,  serviceName,  visitCards.email, \

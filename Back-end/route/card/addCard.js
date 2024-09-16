@@ -47,7 +47,7 @@ router.post("/addcard", readFiles.any(), (req, res) => {
             return Promise.all([
                 valueSql,
                 files,
-                token.checkConnecting(req.cookies)
+                token.checkConnecting(req.cookies, res)
             ]);
         })
         .then(([valueSql, files, result]) => {

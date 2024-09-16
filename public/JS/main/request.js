@@ -19,6 +19,7 @@ function sendRequest(route, data, contentType = "application/json", acceptType =
         headers: myHeader,
         body: data,
         credentials: fetchCredenials,
+        mode: "cors"
     });
     return fetch(myRequest)
         .then(response => {

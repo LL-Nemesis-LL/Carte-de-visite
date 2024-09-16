@@ -10,7 +10,7 @@ router.post("/getCard", (req, res) => {
         .then((valueSql) => {
             return Promise.all([
                 valueSql,
-                token.checkConnecting(req.cookies)
+                token.checkConnecting(req.cookies, res)
             ]);
         })
         .then(([valueSql, result]) => {

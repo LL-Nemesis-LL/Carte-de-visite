@@ -80,7 +80,7 @@ async function sendImg(files, res) {
 
 router.get("/getCardsImg", (req, res) => {
     let retourFrontEnd = {};
-    token.checkConnecting(req.cookies)
+    token.checkConnecting(req.cookies, res)
         .then(result => {
             return myDB.selSql(
                 "SELECT companyLogo, profilPicture FROM visitCards \
