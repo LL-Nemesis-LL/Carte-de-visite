@@ -1,6 +1,5 @@
 Back-end/node_modules
 package-lock.json
-package.json
 image/companyLogo/*
 image/profilPicture/*
 !image/profilPicture/3cff8801-199a-4a6c-8bb4-ebad9d91e3a2-Aucun.jpg

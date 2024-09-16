@@ -78,21 +78,7 @@ La création de la base de données ainsi que ses tables est présente dans le f
 ### Installation des modules npm
 ```sh
 cd ./Back-end/
-
-#Variable d'environnement
-npm install dotenv
-
-#Http
-npm install express cors cookie-parser
-
-#Base de données
-npm install mysql2
-
-#Cryptographie
-npm install crypto js-sha256
-
-#Fichier
-npm install multer fs path
+npm install visitcard
 ```
 
 ## Fonctionnalité
